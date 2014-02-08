@@ -1,0 +1,240 @@
+<?php include 'views/inc/header.php';
+//<------ * TITLE LANG  * ------>
+foreach ( _Function :: arrayLang() as $key => $value ) : 							
+$explode = explode( '-', $key );
+	if( $explode[1] == null ) {
+		$explode[1] = $explode[0];
+	}
+	
+if( $value ==  $_SESSION['lang'] ){
+	$_SESSION['lang_now'] = $explode[1];
+}
+endforeach; ?>
+<link rel="canonical" href="<?php echo URL_BASE; ?>">
+</head>
+<!-- Body -->
+	<body id="sessionNull">
+		
+		<!-- warpper_top_bar -->
+		<div class="warpper_top_bar">
+				<!-- inner_top_bar -->
+				<header class="inner_top_bar">
+					<!-- padding_class -->
+					<div class="padding_class">
+						<?php include 'views/inc/logo.php'; ?>
+						<!-- navegation -->	
+					<nav id="navegation">
+						<ul>
+							<li>
+								<span id="signInButton" class="toogle"><?php echo $_SESSION['LANG']['lang_title']. ' : <strong>' .$_SESSION['lang_now'].'</strong>'; ?> 
+									<i class="arrow"></i>
+									</span>
+							<div id="boxLogin" class="boxLogin" style="width: 270px; right: -11px;">
+									<i class="arrowUp"></i>
+									<ul class="options_toogle" style="padding: 10px 0;">
+										<?php foreach ( _Function :: arrayLang() as $key => $value ) : 
+										
+										$explode = explode( '-', $key );
+										
+										if( $explode[1] == null ) {
+											$explode[1] = $explode[0];
+										}
+										
+										
+										if( $value ==  $_SESSION['lang'] ){
+											$classActive = ' class="active_lang"';
+											$urlLanguage = '';
+										} else {
+											$classActive = null;
+											$urlLanguage = 'href="'.URL_BASE.'?lang='.$value.'"';
+										}
+											?>
+											<li<?php echo $classActive; ?> style="width: 50%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+											<a <?php echo $urlLanguage; ?> title="<?php echo $explode[0]; ?>" style="padding: 4px 25px;">
+												<?php echo $explode[1]; ?>
+											</a>
+											</li>
+											<?php endforeach;  ?>
+									</ul>
+								</div><!-- boxLogin -->
+							</li>
+						</ul>
+					</nav><!-- navegation -->
+					
+						<!-- navegation -->	
+					<nav id="navegation_2">
+						<ul>
+							<li class="settings_2">
+								<span id="signInButton" class="toogle"><?php echo $_SESSION['LANG']['lang_title']; ?>
+									 <i class="arrow"></i>
+									 </span>
+									 
+								<div id="boxLogin" class="boxLogin" style="width: 270px; right: -5px;">
+									<i class="arrowUp"></i>
+									<ul class="options_toogle" style="padding: 10px 0;">
+										<?php foreach ( _Function :: arrayLang() as $key => $value ) : 
+										
+										$explode = explode( '-', $key );
+										
+										if( $explode[1] == null ) {
+											$explode[1] = $explode[0];
+										}
+										
+										if( $value ==  $_SESSION['lang'] ){
+											$classActive = ' class="active_lang"';
+											$urlLanguage = '';
+										} else {
+											$classActive = null;
+											$urlLanguage = 'href="'.URL_BASE.'?lang='.$value.'"';
+										}
+											?>
+											<li<?php echo $classActive; ?> style="width: 50%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+											<a class="device-mobile" title="<?php echo $explode[0]; ?>"  <?php echo $urlLanguage; ?> style="padding: 4px 25px;">
+												<?php echo $explode[1]; ?>
+												</a>
+												</li>
+											<?php endforeach;  ?>
+									  </ul>
+								</div><!-- boxLogin -->
+							</li>
+						</ul>
+					</nav><!-- navegation -->
+					
+			    </div><!-- padding_class -->
+			</header><!-- inner_top_bar -->
+		</div><!-- warpper_top_bar -->
+		
+		<!-- layout -->
+		<section class="layout session_null">
+			<div class="popout"></div>
+
+			<!-- padding_class -->
+		    <div class="padding_class">
+		  
+			   
+			   		
+			   			<!-- welcome_text -->
+			   			<h1 class="welcome_text">
+			   			<?php echo $_SESSION['LANG']['welcome_text']; ?>
+			   		</h1><!-- welcome_text -->
+			   		
+			   		
+			   			<!-- form_signin -->
+			   			<div class="signin_form">
+		    				<h3><?php echo $_SESSION['LANG']['title_sign_in']; ?></h3>
+		    				
+		    				<form style="display: none; border-top: 1px solid #FFF;" action="" method="post" name="form" id="recover_pass_form" class="form_login recoverForm">
+		    					<input type="text" name="email_recover" id="email_recover" placeholder="<?php echo $_SESSION['LANG']['placeholder_email_recover']; ?>" title="<?php echo $_SESSION['LANG']['placeholder_email_recover']; ?>" />
+		    					<a style="cursor: pointer;" class="recover_pass buttonInside forgot buttonBack">&laquo; <?php echo $_SESSION['LANG']['back']; ?></a>
+		    					<span id="error_recover"></span>
+		    					<span id="success_recover"></span>
+		    					<button type="submit" id="buttonRecoverPass"><?php echo $_SESSION['LANG']['send']; ?></button>
+		    				</form>
+		    				
+		    				<form action="" method="post" name="form" id="signin_form" class="signInForm">
+		    					<input type="text" name="user" id="user" placeholder="<?php echo $_SESSION['LANG']['placeholder_email_username']; ?>" title="<?php echo $_SESSION['LANG']['placeholder_email_username']; ?>" />
+		    					<input type="password" name="password" id="password_signin" placeholder="<?php echo $_SESSION['LANG']['placeholder_pass']; ?>" title="<?php echo $_SESSION['LANG']['placeholder_pass']; ?>" />
+		    					<a style="cursor: pointer;"  class="recover_pass forgot buttonForgot"><?php echo $_SESSION['LANG']['placeholder_forgot_pass']; ?></a>
+		    					<span id="error"></span>
+		    					<span id="success_signin"></span>
+		    					<button type="submit" id="buttonSignIn" data-wait="<?php echo $_SESSION['LANG']['please_wait']; ?>"><?php echo $_SESSION['LANG']['sign_in']; ?></button>
+		    				</form>
+			   		</div><!-- form_signup -->
+			   		
+			   		
+			   		<!-- form_signup -->
+			   		<div class="form_signup">
+		    				<h3><?php echo $_SESSION['LANG']['title_sign_up']; ?></h3>
+		    				<form action="" method="post" name="form" id="signup_form">
+		    					<input type="text" name="full_name" id="full_name" placeholder="<?php echo $_SESSION['LANG']['full_name']; ?>" title="<?php echo $_SESSION['LANG']['full_name']; ?>" />
+		    					<input type="text" name="username" id="username" placeholder="<?php echo $_SESSION['LANG']['username']; ?>" title="<?php echo $_SESSION['LANG']['username']; ?>" />
+		    					<input type="text" name="email" id="email" placeholder="<?php echo $_SESSION['LANG']['mail']; ?>" title="<?php echo $_SESSION['LANG']['mail']; ?>" />
+		    					<input type="password" name="password" id="password" placeholder="<?php echo $_SESSION['LANG']['placeholder_pass']; ?>" title="<?php echo $_SESSION['LANG']['placeholder_pass']; ?>" />
+		    					<input type="text" name="captcha" id="lcaptcha" placeholder="" title="" />
+		    					<input type="checkbox" value="1" name="terms" id="terms" tabindex="3" checked="checked">
+		    					<a href="<?php echo URL_BASE; ?>terms/" class="recover_pass termsLegal" target="_blank"><?php echo $_SESSION['LANG']['terms']; ?></a>
+		    					<span id="errorSignUp"></span>
+		    					<span id="success"></span>
+		    					<button type="submit" id="buttonSubmit"><span><?php echo $_SESSION['LANG']['sign_up']; ?></span></button>
+		    				</form>
+		    				
+			   		</div><!-- form_signup -->
+			   		
+			 </div><!-- padding_class -->
+		</section><!-- layout -->
+		
+		<!-- footer -->
+		<footer class="footer">
+			<ul>
+				<li>
+					<a href="<?php echo URL_BASE; ?>about/"><?php echo $_SESSION['LANG']['about']; ?></a>
+				</li>
+				
+				<li>
+					<a href="<?php echo URL_BASE; ?>terms/"><?php echo $_SESSION['LANG']['terms']; ?></a>
+				</li>
+				
+				<li>
+					<a href="<?php echo URL_BASE; ?>privacy/"><?php echo $_SESSION['LANG']['privacy']; ?></a>
+				</li>
+				
+				<li>
+					<a href="<?php echo URL_BASE; ?>advertising/"><?php echo $_SESSION['LANG']['advertising']; ?></a>
+				</li>
+				
+				<li>
+					<a href="<?php echo URL_BASE; ?>help/"><?php echo $_SESSION['LANG']['help']; ?></a>
+				</li>
+				
+				
+				<li>
+					&copy; <?php echo date('Y')." ".SITE_NAME; ?>
+				</li>
+				
+			</ul>
+		</footer><!-- footer -->
+   
+   <script src="<?php echo $_layoutParams['root_js']; ?>jquery-1.7.1.min.js" type="text/javascript"></script>
+   <script src="<?php echo $_layoutParams['root_js']; ?>login.sign.up.js"></script>
+   <script src="<?php echo $_layoutParams['root_js']; ?>jquery.backstretch.min.js"></script>
+   <script src="<?php echo $_layoutParams['root_js']; ?>jquery.placeholder.1.1.1.min.js"></script>
+   
+   <script>
+   
+   $('.toogle').click(function() {
+		$('.boxLogin').slideToggle(2);
+		$(this).addClass('active');
+		return false
+	});
+	
+	$(document).bind('click', function(e) {
+		var $clicked = $(e.target);
+		if ( !$clicked.parents().hasClass("toogle") 
+		)
+		{
+			$(".boxLogin").slideUp(1);
+			$('.toogle').removeClass('active');
+		}
+	});
+	
+   $.backstretch(["<?php echo $_layoutParams['root_img']; ?>bg.jpg"]);
+   jQuery(document).ready(function($) {
+  
+  <?php if( $this->accountValidate == 1 && isset( $_GET['validate'] ) ): ?>
+  $('.popout').html( '<?php echo $_SESSION['LANG']['accoun_validated'] ?>' ).fadeIn( 500 );
+  <?php endif; ?>
+  
+  <?php if( $this->accountValidate == 0 && isset( $_GET['validate'] ) ): ?>
+  $('.popout').html( '<?php echo $_SESSION['LANG']['code_not_valid'] ?>' ).fadeIn( 500 );
+  <?php endif; ?>
+  
+  $(function(){
+      $(':input[placeholder]').placeholder();
+    });
+    
+   });
+  </script>
+ </body>
+</html>
+
+   
